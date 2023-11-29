@@ -1,6 +1,5 @@
-import 'dart:io';
-
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:sizer/sizer.dart';
 import 'SingleGameScreen.dart';
@@ -21,8 +20,8 @@ class SecondScreenState extends State<SecondScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return CupertinoPageScaffold(
-      child: Stack(children: [
+    return Scaffold(
+      body: Stack(children: [
         Container(
           width: MediaQuery.of(context).size.width,
           decoration: const BoxDecoration(

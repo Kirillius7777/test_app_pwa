@@ -10,6 +10,7 @@ Future<void> main() async {
   PWAInstall().setup(installCallback: () {
     debugPrint('APP INSTALLED!');
   });
+
   runApp(const MyApp());
 }
 

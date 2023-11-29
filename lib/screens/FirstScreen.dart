@@ -1,4 +1,6 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:pwa_install/pwa_install.dart';
 import 'package:sizer/sizer.dart';
 import '/screens/SecondScreen.dart';
 
@@ -15,8 +17,8 @@ class FirstScreenState extends State<FirstScreen> {
   @override
   @override
   Widget build(BuildContext context) {
-    return CupertinoPageScaffold(
-      child: Stack(children: [
+    return Scaffold(
+      body: Stack(children: [
         Container(
           width: MediaQuery.of(context).size.width,
           decoration: const BoxDecoration(
@@ -34,6 +36,9 @@ class FirstScreenState extends State<FirstScreen> {
                   height: 7.h,
                   child: GestureDetector(
                     onTap: () {
+                      try {
+                        PWAInstall().promptInstall_();
+                      } catch (e) {}
                       Navigator.push(
                         context,
                         CupertinoPageRoute(

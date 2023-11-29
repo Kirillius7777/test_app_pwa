@@ -1,7 +1,7 @@
 import 'dart:async';
-import 'dart:io';
 import 'dart:math';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import '../services/CardGen.dart';
 import 'package:sizer/sizer.dart';
 
@@ -106,8 +106,8 @@ class SingleGameScreenState extends State<SingleGameScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return CupertinoPageScaffold(
-      child: Container(
+    return Scaffold(
+      body: Container(
         width: MediaQuery.of(context).size.width,
         decoration: const BoxDecoration(
           image: DecorationImage(
