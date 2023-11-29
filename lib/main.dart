@@ -1,7 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'screens/FirstScreen.dart';
-import 'package:sizer/sizer.dart';
 import 'package:pwa_install/pwa_install.dart';
 
 Future<void> main() async {
@@ -11,20 +8,53 @@ Future<void> main() async {
     debugPrint('APP INSTALLED!');
   });
 
-  runApp(const MyApp());
+  runApp(MaterialApp(home: App()));
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Sizer(
-      builder: (context, orientation, deviceType) {
-        return const MaterialApp(
-          debugShowCheckedModeBanner: false,
-          home: FirstScreen(),
-        );
-      },
+    return MaterialApp(
+      home: HomeView(),
+      title: 'PWA Install',
     );
+  }
+}
+
+class HomeView extends StatefulWidget {
+  const HomeView({Key? key}) : super(key: key);
+
+  @override
+  State<HomeView> createState() => _HomeViewState();
+}
+
+class _HomeViewState extends State<HomeView> {
+  String? error;
+  @override
+  void initState() {
+    super.initState();
+    try {
+      PWAInstall().promptInstall_();
+    } catch (e) {
+      setState(() {
+        error = e.toString();
+      });
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        body: Center(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const Text('SUPER GAME'),
+          const Text('SUPER GAME'),
+          const Text('SUPER GAME'),
+        ],
+      ),
+    ));
   }
 }
