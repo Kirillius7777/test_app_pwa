@@ -30,17 +30,6 @@ class HomeView extends StatefulWidget {
 
 class _HomeViewState extends State<HomeView> {
   String? error;
-  @override
-  void initState() {
-    super.initState();
-    try {
-      PWAInstall().promptInstall_();
-    } catch (e) {
-      setState(() {
-        error = e.toString();
-      });
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -50,9 +39,22 @@ class _HomeViewState extends State<HomeView> {
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const Text('SUPER GAME'),
-          const Text('SUPER GAME'),
-          const Text('SUPER GAME'),
+          const Text('Version: 6'),
+          Text('Launch Mode: ${PWAInstall().launchMode?.shortLabel}'),
+          Text('Has Install Prompt: ${PWAInstall().hasPrompt}'),
+          if (PWAInstall().installPromptEnabled)
+            ElevatedButton(
+                onPressed: () {
+                  try {
+                    PWAInstall().promptInstall_();
+                  } catch (e) {
+                    setState(() {
+                      error = e.toString();
+                    });
+                  }
+                },
+                child: const Text('Install')),
+          if (error != null) Text(error!)
         ],
       ),
     ));
